@@ -52,9 +52,11 @@ def mutation(dest_file):
     # 해당 스트림 사이즈의 1 ~ 10% 변조 할 오프셋 선택
     for offset, size in mutate_position:
         fuzz_offset += sample(xrange(offset, offset+size), int(size*uniform(0.01, 0.1)))
+        print fuzz_offset
 
     # 변조
     for index in fuzz_offset:
+        print index
         if index >= hwp_length : continue
         hwp_write[index] = choice(fuzz_byte)
     # 파일로 저장
